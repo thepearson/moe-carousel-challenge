@@ -1,11 +1,5 @@
 import React from 'react'
 
-const items = [
-  {
-    title: ''
-  }
-];
-
 export default function Carousel() {
   return (
     <div>
