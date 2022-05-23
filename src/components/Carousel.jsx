@@ -4,8 +4,6 @@ import CarouselItem from './CarouselItem';
 
 export default function Carousel(props) {
   
-  const [activeItem, setActiveItem] = useState(0);
-
   return (
     <div>
       <h1>A Carousel</h1>
