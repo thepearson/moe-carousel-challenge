@@ -13,51 +13,61 @@ import Carousel from './components/Carousel';
 
 const items = [
   {
+    id: 'image1',
     title: 'The River',
     image: image1,
     url: 'https://www.example.com'
   },
   {
+    id: 'image2',
     title: 'The Forest',
     image: image2,
     url: 'https://www.example.com'
   },
   {
+    id: 'image3',
     title: 'The Sculpture',
     image: image3,
     url: 'https://www.example.com'
   },
   {
+    id: 'image4',
     title: 'The Street',
     image: image4,
     url: 'https://www.example.com'
   },
   {
+    id: 'image5',
     title: 'The Bus',
     image: image5,
     url: 'https://www.example.com'
   },
   {
+    id: 'imag6',
     title: 'The Mountain',
     image: image6,
     url: 'https://www.example.com'
   },
   {
+    id: 'image7',
     title: 'The Rain',
     image: image7,
     url: 'https://www.example.com'
   },
   {
+    id: 'image8',
     title: 'The Beach',
     image: image8,
     url: 'https://www.example.com'
   },
   {
+    id: 'image9',
     title: 'The Flags',
     image: image9,
     url: 'https://www.example.com'
   },
   {
+    id: 'image10',
     title: 'The Flower',
     image: image10,
     url: 'https://www.example.com'

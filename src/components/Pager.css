@@ -1,0 +1,42 @@
+.pager {
+  list-style: none;
+  width: 25rem;
+  margin:1rem 3.5rem;
+  padding: 0;
+}
+
+.pager li {
+  margin:0 0.2rem;
+  display: inline;
+}
+
+.pager-button {
+  cursor: pointer;
+  border: 1px solid #000;
+  width: 1rem;
+  height: 1rem;
+  background-color: beige;
+  border-radius: 50%;
+}
+
+.pager-button.current {
+  background-color: black;
+}
+
+.chevron {
+  cursor: pointer;
+  background-color: transparent;
+  border-style: solid;
+	border-width: 0.25rem 0.25rem 0 0;
+	height: 1rem;
+  width: 0.45rem;
+	transform: rotate(-135deg);
+}
+
+.chevron:hover {
+  border-color: #000;
+}
+
+.chevron.right {
+  transform: rotate(45deg);
+}
