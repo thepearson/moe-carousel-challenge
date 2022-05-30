@@ -9,10 +9,19 @@ export default function Carousel(props) {
 
   const transitions = useTransition(props.items[currentIndex], {
     keys: item => item.id,
-    from: { opacity: 0 },
-    enter: { opacity: 1 },
-    leave: { opacity: 0 },
-    config: config.gentle,
+    from: { 
+      //opacity: 0,
+      marginLeft: "25rem" 
+    },
+    enter: { 
+      //opacity: 1,
+      marginLeft: "0" 
+    },
+    leave: { 
+      //opacity: 0,
+      marginLeft: "-25rem" 
+    },
+    config: config.default,
   })
 
   const updateIndex = (index) => {
