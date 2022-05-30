@@ -1,12 +1,19 @@
 import './Carousel.css'
 import React from 'react'
-import { useState, useRef } from 'react'
-import CarouselItem from './CarouselItem'
+import { useState } from 'react'
 import Pager from './Pager'
+import { useTransition, animated, config } from 'react-spring'
 
 export default function Carousel(props) {
   const [currentIndex, setCurrentIndex] = useState(props.defaultIndex || 0)
-  const nodeRef = useRef(null)
+
+  const transitions = useTransition(props.items[currentIndex], {
+    keys: item => item.id,
+    from: { opacity: 0 },
+    enter: { opacity: 1 },
+    leave: { opacity: 0 },
+    config: config.gentle,
+  })
 
   const updateIndex = (index) => {
     setCurrentIndex(index)
@@ -15,10 +22,19 @@ export default function Carousel(props) {
   return (
     <>
       <h1>A Carousel</h1>
-      <div className='carousel' ref={nodeRef}>
-        {/* <CarouselItem position="prevItem" key="prevItem" {...props.items[(currentIndex === 0) ? (props.items.length - 1) : currentIndex - 1]} />   */}
-        <CarouselItem position="currentItem" key="currentItem" {...props.items[currentIndex]} />  
-        {/* <CarouselItem position="nextItem" key="nextItem" {...props.items[(currentIndex === (props.items.length - 1)) ? 0 : currentIndex + 1]} />   */}
+      <div className='carousel'>
+      {transitions((props, item)  => (
+        <animated.div className="items"
+          key={item.id}
+          style={{...props}}>
+          <a title={`${item.title} link`} href={item.url} className="carousel-item">
+            <img className="carousel-image" src={item.image} alt={item.title} />
+            <div className="carousel-overlay">
+              <h2>{item.title}</h2>
+            </div>
+          </a>
+        </animated.div>
+      ))}
       </div>
       <Pager size={props.items.length} currentIndex={currentIndex} handleIndexUpdate={updateIndex} />
     </>
