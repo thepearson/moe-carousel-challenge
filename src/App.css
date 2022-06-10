@@ -1,38 +1,99 @@
-.App {
-  margin: 2rem;
+.nav {
+  position: absolute;
+  top: 50%;
+  width: 4rem;
+  height: 4rem;
+  z-index: 9999;
+  border: none;
+  background-color: transparent;
+  border-right: 1rem solid rgba(255, 255, 255, 0.5);
+  border-top: 1rem solid rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+}
+.nav:hover {
+  border-color: rgba(255, 255, 255, 0.9);
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.nav-left {
+  left: 4rem;
+  transform: rotate(225deg);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.nav-right {
+  right: 4rem;
+  transform: rotate(45deg);
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.button-link {
+  margin-top: 2rem;
+  border: 2px solid #ddd;
+  border-radius: 5px;
+  display: block;
+  background-color: blue;
+  color: #fff;
+  text-transform: uppercase;
+  width: 12rem;
+  text-decoration: none;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: normal;
+  font-size: 1.5rem;
+  font-weight: bold;
+  padding: 1rem;
+  position: relative;
+  text-align: center;
+}
+
+.button-link:hover {
+  background-color: #33F;
+}
+
+.button-link:after {
+  display:block;
+  content: '';
+  width: 1rem;
+  height: 1rem;
+  border: none;
+  position: absolute;
+  top: 1rem;
+  right: 2rem;
+  background-color: transparent;
+  border-right: 0.2rem solid #fff;
+  border-top: 0.2rem solid #fff;
+  transform: rotate(45deg);
+  cursor: pointer;
+}
+
+.content-container-color {
+  background-color: rgba(255, 255, 255, 0.7);
+  position: absolute;
+  border-radius: 1rem;
+  padding: 2rem;
+  width: 45rem;
+  height: 20rem;
+  bottom: 5rem;
+  right: 7rem;
+}
+
+.content-container {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  border-radius: 1rem;
+  padding: 2rem;
+  width: 45rem;
+  position: absolute;
+  bottom: 7rem;
+  right: 7rem;
 }
 
-.App-link {
-  color: #61dafb;
+.title {
+  font-size: 4rem;
+  text-shadow: 2px 2px #fff;
+  margin:0;
+  padding:0;
+  font-family: 'Times New Roman', Times, serif;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.sub {
+  font-size: 2rem;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }

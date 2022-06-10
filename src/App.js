@@ -1,83 +1,170 @@
 import './App.css';
-import image1 from './images/image01.jpg';
-import image2 from './images/image02.jpg';
-import image3 from './images/image03.jpg';
-import image4 from './images/image04.jpg';
-import image5 from './images/image05.jpg';
-import image6 from './images/image06.jpg';
-import image7 from './images/image07.jpg';
-import image8 from './images/image08.jpg';
-import image9 from './images/image09.jpg';
-import image10 from './images/image10.jpg';
-import Carousel from './components/Carousel';
+import garlic from './images/garlic.jpg';
+import bird from './images/bird.jpg';
+import couple from './images/couple.jpg';
+import church from './images/church.jpg';
+import paint from './images/paint.jpg';
+import road from './images/road.jpg';
+import sand from './images/sand.jpg';
+import sunset from './images/sunset.jpg';
+
+import { useRef, useState, useEffect } from 'react';
+
+import { Parallax, ParallaxLayer } from '@react-spring/parallax'
+
+const default_settings = {
+  speed: 0,
+  factor: 1
+}
 
 const items = [
   {
-    id: 'image1',
-    title: 'The River',
-    image: image1,
-    url: 'https://www.example.com'
+    id: 'garlic',
+    content: {
+      title: 'Vampire problem?',
+      sub: "Try our new product, you'll never believe the results!",
+      link: 'https://tuigarden.co.nz/how-to-guide/garlic-growing-guide/'
+    },
+    image: garlic,
+    settings: {...default_settings}
   },
   {
-    id: 'image2',
-    title: 'The Forest',
-    image: image2,
-    url: 'https://www.example.com'
+    id: 'bird',
+    content: {
+      title: 'Hummingbird',
+      sub: 'The best coffee money can buy.',
+      link: 'https://www.hummingbirdcoffee.com/'
+    },
+    image: bird,
+    settings: {...default_settings}
   },
   {
-    id: 'image3',
-    title: 'The Sculpture',
-    image: image3,
-    url: 'https://www.example.com'
+    id: 'couple',
+    content: {
+      title: 'Looking for love?',
+      sub: "Dating apps you'll actually want to use!",
+      link: 'https://www.elle.com/uk/life-and-culture/culture/g31147560/best-dating-apps/'
+    },
+    image: couple,
+    settings: {...default_settings}
   },
   {
-    id: 'image4',
-    title: 'The Street',
-    image: image4,
-    url: 'https://www.example.com'
+    id: 'church',
+    content: {
+      title: 'Belief',
+      sub: 'Descover religion in 2022',
+      link: 'https://www.verywellmind.com/religion-improves-health-2224007'
+    },
+    image: church,
+    settings: {...default_settings}
   },
   {
-    id: 'image5',
-    title: 'The Bus',
-    image: image5,
-    url: 'https://www.example.com'
+    id: 'paint',
+    content: {
+      title: 'Colorize your life',
+      sub: 'Find the right paint for your project',
+      link: 'https://www.resene.co.nz/'
+    },
+    image: paint,
+    settings: {...default_settings}
   },
   {
-    id: 'imag6',
-    title: 'The Mountain',
-    image: image6,
-    url: 'https://www.example.com'
+    id: 'road',
+    content: {
+      title: 'NZ Roadtrip',
+      sub: 'Build Your Own Adventure!',
+      link: 'https://www.theroadtrip.co.nz/'
+    },
+    image: road,
+    settings: {...default_settings}
   },
   {
-    id: 'image7',
-    title: 'The Rain',
-    image: image7,
-    url: 'https://www.example.com'
+    id: 'sand',
+    content: {
+      title: 'Sandy much?',
+      sub: 'The great desert biome',
+      link: 'https://ucmp.berkeley.edu/exhibits/biomes/deserts.php'
+    },
+    image: sand,
+    settings: {...default_settings}
   },
   {
-    id: 'image8',
-    title: 'The Beach',
-    image: image8,
-    url: 'https://www.example.com'
+    id: 'sunset',
+    content: {
+      title: 'Planning a funeral?',
+      sub: 'Gee & Hickton Funeral Directors - Serving Wellington families since 1946',
+      link: 'https://geeandhickton.co.nz/'
+    },
+    image: sunset,
+    settings: {...default_settings}
+  }
+];
+
+const options = {
+  pages: items.length,
+  horizontal: true,
+  enabled: false, 
+  innerStyle: {
+    width: "100%", 
+    margin: "0 auto"
   },
-  {
-    id: 'image9',
-    title: 'The Flags',
-    image: image9,
-    url: 'https://www.example.com'
-  },
-  {
-    id: 'image10',
-    title: 'The Flower',
-    image: image10,
-    url: 'https://www.example.com'
-  },
-]
+  style: { 
+    top: '0', 
+    left: '0', 
+    right: '0' 
+  }
+}
+
+
+
 
 function App() {
+  const ref = useRef()
+  const [index, setIndex] = useState(0)
+  useEffect(() => {
+    ref.current.scrollTo(index)
+  }, [index])
+
+  const updateIndex = i => {
+    setIndex(i)
+  }
+
   return (
     <div className="App">
-      <Carousel items={items} />
+      <button className="nav nav-left" onClick={() => updateIndex((index === 0) ? items.length - 1 : index - 1)}></button>
+    <>
+      <Parallax {...options} ref={ref}>
+        {items.map((item, i) => (<>
+          <ParallaxLayer 
+            {...item.settings}
+            offset={i}
+            key={item.id} 
+            style={{
+              background: `url(${item.image}) no-repeat center center fixed`}}
+            />
+          <ParallaxLayer 
+            {...item.settings}
+            speed="0.5"
+            offset={i}
+            key={`${item.id}-title`}>
+              <div className="content-container-color"></div>
+            </ParallaxLayer>
+          <ParallaxLayer 
+            {...item.settings}
+            speed="1"
+            offset={i}
+            key={`${item.id}-title`}>
+              <div className="content-container">
+                <h1 className="title">{item.content.title}</h1>
+                <p className="sub">{item.content.sub}</p>
+                <a className="button-link" href={item.content.link}>View</a>
+              </div>
+            </ParallaxLayer>
+        </>
+        ))}
+      </Parallax>
+    </>
+      <button className="nav nav-right" onClick={() => updateIndex((index === (items.length - 1)) ? 0 : index + 1)}></button>
     </div>
   );
 }
